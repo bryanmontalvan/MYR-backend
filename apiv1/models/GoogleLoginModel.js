@@ -1,9 +1,14 @@
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
-let GoogleAccountSchema = new Schema({
+const UserSetting = {
+    "darkMode": { type: Boolean, default:true }
+};
+
+const GoogleAccountSchema = new Schema({
     "email": String,
-    "googleId": String
+    "googleId": String,
+    'userSettings':UserSetting
 });
 
 module.exports = mongoose.model('GoogleLogin', GoogleAccountSchema);

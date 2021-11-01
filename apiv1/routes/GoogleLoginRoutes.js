@@ -6,4 +6,8 @@ router.get('/', GoogleLoginController.list);
 
 router.get('/id/:id', GoogleLoginController.getByID);
 
+router.get('/settings', GoogleLoginController.getUserSetting);
+
+router.post('/settings', GoogleLoginController.updateUserSetting);
+
 module.exports = router;

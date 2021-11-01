@@ -1,4 +1,4 @@
-const { isAdmin } = require('../authorization/verifyAuth');
+const { isAdmin, verifyGoogleToken } = require('../authorization/verifyAuth');
 const GoogleLoginModel = require('../models/GoogleLoginModel');
 const ObjectId = require('mongoose').Types.ObjectId;
 
@@ -75,5 +75,81 @@ module.exports = {
         }
 
         return resp.status(200).json(account);
+    },
+    getUserSetting : async function(req,resp){
+        console.log("getting settings")
+        let uid = req.headers['x-access-token'];
+        if(!uid){
+            return resp.status(401).json({
+                message: "No userID supplied",
+                error: "Unauthorized"
+            });
+        }
+
+        if(uid !== "1"){
+            uid = await verifyGoogleToken(req.headers['x-access-token']);
+            if(!uid){
+                return resp.status(401).json(invalid_token);
+            }
+        }
+
+        console.log(resp.params);
+
+        let setting; 
+        try {
+            const user = await GoogleLoginModel.findOne({_id:uid});
+            setting = user.userSettings;
+        }catch(err){
+            return resp.status(500).json({
+                message: "Error finding User Setting",
+                error: err
+            });
+        }
+        return resp.json(setting);
+
+    },
+    updateUserSetting: async function(req,resp){
+        let id = req.params.id;
+        let body = req.body;
+
+        if(!req.headers['x-access-token']){
+            return resp.status(400).json({
+                message: "Missing user ID",
+                error: "Bad Request"
+            });
+        }else{
+            let uid = await verifyGoogleToken(req.headers['x-access-token']);
+            if(!uid){
+                return resp.status(401).json({
+                    message: "Invalid token recieved",
+                    error: "Unauthorized"
+                });
+            }
+        }
+
+        if(Object.keys(body) === 0 || body.settings === undefined){
+            return resp.status(400).json({
+                message: "Missing required fields",
+                error: (Object.keys(body) == 0 ? "No body provided" : "No settings provided")
+            });
+        }
+
+        let googleId;
+        try {
+            googleId = await GoogleLoginModel.findByid(id);
+        } catch (err) {
+            return resp.status(500).json({
+                message: "Error getting id",
+                error: err
+            });
+        }
+
+        if(!googleId){
+            return resp.status(404).json({
+                message: `Could not find googleId "${id}"`,
+                error: "Id not found"
+            });
+        }
+        console.log(googleId);
     }
 };
