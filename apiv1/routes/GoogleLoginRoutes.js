@@ -8,6 +8,6 @@ router.get('/id/:id', GoogleLoginController.getByID);
 
 router.get('/settings', GoogleLoginController.getUserSetting);
 
-router.post('/settings', GoogleLoginController.updateUserSetting);
+router.put('/settings', GoogleLoginController.updateUserSetting);
 
 module.exports = router;

@@ -77,7 +77,6 @@ module.exports = {
         return resp.status(200).json(account);
     },
     getUserSetting : async function(req,resp){
-        console.log("getting settings")
         let uid = req.headers['x-access-token'];
         if(!uid){
             return resp.status(401).json({
@@ -92,8 +91,6 @@ module.exports = {
                 return resp.status(401).json(invalid_token);
             }
         }
-
-        console.log(resp.params);
 
         let setting; 
         try {
@@ -117,26 +114,26 @@ module.exports = {
                 message: "Missing user ID",
                 error: "Bad Request"
             });
-        }else{
-            let uid = await verifyGoogleToken(req.headers['x-access-token']);
-            if(!uid){
-                return resp.status(401).json({
-                    message: "Invalid token recieved",
-                    error: "Unauthorized"
-                });
-            }
         }
 
-        if(Object.keys(body) === 0 || body.settings === undefined){
+        if(Object.keys(body) === 0 || body === undefined){
             return resp.status(400).json({
                 message: "Missing required fields",
                 error: (Object.keys(body) == 0 ? "No body provided" : "No settings provided")
             });
         }
 
+        let uid = await verifyGoogleToken(req.headers['x-access-token']);
+        if(!uid){
+            return resp.status(401).json({
+                message: "Invalid token recieved",
+                error: "Unauthorized"
+            });
+        }
+
         let googleId;
         try {
-            googleId = await GoogleLoginModel.findByid(id);
+            googleId = await GoogleLoginModel.findById(uid);
         } catch (err) {
             return resp.status(500).json({
                 message: "Error getting id",
@@ -150,6 +147,17 @@ module.exports = {
                 error: "Id not found"
             });
         }
-        console.log(googleId);
+        
+        googleId.userSettings = body;
+        try {
+            await googleId.save(); 
+        }catch(err){
+            return resp.status(500).json({
+                message: "Error updating user settings",
+                error: err
+            });
+        }
+
+        return resp.status(200).json(googleId);//No Content
     }
 };

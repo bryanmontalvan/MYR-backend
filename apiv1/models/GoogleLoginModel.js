@@ -2,7 +2,7 @@ let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 const UserSetting = {
-    "darkMode": { type: Boolean, default:true }
+    "darkMode": { type: Boolean, default:false }
 };
 
 const GoogleAccountSchema = new Schema({
