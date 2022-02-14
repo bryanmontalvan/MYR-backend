@@ -86,8 +86,8 @@
                 <div class="col-md-12 lead ">
                     <h3 class="text-center ">MYR Collections</h3>
                     <p class="text-center ">
-                        MYR Classrooms are a way for students to easily submit scenes to one location. Students are able
-                        to add a classroom ID to
+                        MYR Collections are a way for students to easily submit scenes to one location. Students are able
+                        to add a collection ID to
                         their scene which allows you as a teacher to easily see all scenes submitted in one place.
                     </p>
                 </div>
@@ -160,22 +160,22 @@
                         </div>
                         <p class="mb-1">MYR collections are a way for people such as teachers and club presidents to
                             share projects. Any user
-                            can create a classroom code that any other user can then add to their scene. The owner of
+                            can create a collection code that any other user can then add to their scene. The owner of
                             the
-                            classroom code can then see of all the projects with that code in one place.</p>
+                            collection code can then see of all the projects with that code in one place.</p>
                     </div>
                     <div class="list-group-item list-group-item-action flex-column align-items-start">
                         <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">Who can create a classroom?</h5>
+                            <h5 class="mb-1">Who can create a collection?</h5>
                         </div>
-                        <p class="mb-1">Any MYR user can create a classroom! All you need to create a classroom is to be
+                        <p class="mb-1">Any MYR user can create a collection! All you need to create a collection is to be
                             logged in.</p>
                     </div>
                     <div class="list-group-item list-group-item-action flex-column align-items-start">
                         <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">How do I create a classroom?</h5>
+                            <h5 class="mb-1">How do I create a collection?</h5>
                         </div>
-                        <p class="mb-1">To create a classroom, open the hamburger menu (the three lines) in the top left
+                        <p class="mb-1">To create a collection, open the hamburger menu (the three lines) in the top left
                             corner. From there,
                             select the "collections" option. Select the create a class option, enter your class code of
                             choice,
@@ -186,15 +186,14 @@
                             <h5 class="mb-1">I got a message saying my class code is already taken. What does this mean?
                             </h5>
                         </div>
-                        <p class="mb-1">Another MYR user has already added a classroom with that code. Please choice a
-                            different classroom
-                            name.</p>
+                        <p class="mb-1">Another MYR user has already added a collection with that code. Please choose a
+                            unique collection name.</p>
                     </div>
                     <div class="list-group-item list-group-item-action flex-column align-items-start">
                         <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">Who can add to a classroom?</h5>
+                            <h5 class="mb-1">Who can add to a collection?</h5>
                         </div>
-                        <p class="mb-1">Any MYR user can add a classroom code to their project. There are no special
+                        <p class="mb-1">Any MYR user can add a collection code to their project. There are no special
                             permissions or restrictions
                             required.</p>
                     </div>
@@ -240,7 +239,7 @@
                             <a href="../privacy ">Privacy Policy</a>
                         </li>
                     </ul>
-                    <p class="text-muted small mb-4 mb-lg-0 ">&copy; 2019 - University of Massachusetts Lowell,
+                    <p class="text-muted small mb-4 mb-lg-0 ">&copy; 2018 - <span id="date"></span> - University of Massachusetts Lowell,
                         <a href="https://sites.uml.edu/engaging-computing ">Engaging Computing Group</a>
                     </p>
                 </div>
@@ -277,6 +276,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js "
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy "
         crossorigin="anonymous "></script>
+
+    <!-- Other Scripts -->
+    <script type="text/javascript"> document.getElementById("date").innerText = new Date().getFullYear()</script>
 </body>
 
 </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!--Copyright 2019 - University of Massachusetts Lowell, Engaging Computing Group-->
+<!--Copyright 2021 - University of Massachusetts Lowell, Engaging Computing Group-->
 
 <head>
   <!--Metadata-->
@@ -307,7 +307,7 @@
               <a href="../privacy ">Privacy Policy</a>
             </li>
           </ul>
-          <p class="text-muted small mb-4 mb-lg-0 ">&copy; 2019 - University of Massachusetts Lowell,
+          <p class="text-muted small mb-4 mb-lg-0 ">&copy; <span id="date"></span>  - University of Massachusetts Lowell,
             <a href="https://sites.uml.edu/engaging-computing ">Engaging Computing Group</a>
             <li class="list-inline-item ">&sdot;</li>
           </p>
@@ -345,6 +345,9 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js "
     integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy "
     crossorigin="anonymous "></script>
+
+  <!-- Other Scripts -->
+  <script type="text/javascript"> document.getElementById("date").innerText = new Date().getFullYear()</script>
 </body>
 
 </html>
